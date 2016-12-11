@@ -1,0 +1,22 @@
+{
+  "name": "livelator",
+  "version": "1.0.0",
+  "description": "An app to offer live translation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wainaina3/LivelatorServer.git"
+  },
+  "author": "David Wainaina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wainaina3/LivelatorServer/issues"
+  },
+  "homepage": "https://github.com/Wainaina3/LivelatorServer#readme",
+  "dependencies": {
+    "watson-developer-cloud": "^2.13.1"
+  }
+}
