@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<resources>
+
+    <string name="app_name">Livelator</string>
+
+    <!-- Activity Titles -->
+    <string name="homeActivity" formatted="false">Live Translator</string>
+    <string name="livelatorMainActivity" formatted="false">Livelator</string>
+
+    <!-- Navigation Titles -->
+    <string name="mainmenu_entry0">Live Translator</string>
+    <string name="mainmenu_entry1">Log Out</string>
+    <string name="title_activity_home">Livelator</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+</resources>
+
