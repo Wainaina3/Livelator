@@ -1,5 +1,5 @@
 {
-	"name": "NodejsStarterApp",
+	"name": "Livelator",
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
@@ -12,5 +12,5 @@
 	"repository": {},
 	"engines": {
 		"node": "4.x"
-	} 
+	}
 }
