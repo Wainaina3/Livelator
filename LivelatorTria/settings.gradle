@@ -1,5 +1,0 @@
-include ':app'
-//include other modules here
-//include ':core'
-//include ':analytics'
-//include ':push'
