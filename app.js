@@ -21,6 +21,33 @@ app.use(express.static(__dirname + '/public'));
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
+//get the watson cloud 
+var watson = require('watson-developer-cloud');
+
+//Initiate a language translation object
+var language_translation = watson.language_translation({
+  username: '{c3bba1cf-13e4-4862-979a-96083fdcc7db}',
+  password: '{rhndTyzR10sw}',
+  version: 'v2'
+});
+
+app.post('/api/translate', function(req, res, next) {
+  //console.log('/v2/translate');
+  
+  var params = extend({ 'X-WDC-PL-OPT-OUT': req.header('X-WDC-PL-OPT-OUT')}, req.body);
+  //console.log(' ---> params == ' + JSON.stringify(params)); //L.R.
+  
+  language_translation.translate(params, function(err, models) {
+  if (err)
+    return next(err);
+  else
+    res.json(models);
+  });
+});
+
+
+
+
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
   // print a message when the server starts listening
