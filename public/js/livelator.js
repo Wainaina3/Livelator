@@ -4,11 +4,11 @@ function translator(){
 	var textContent = $("#inputed").val();
 
 	var callData = {
-        source: 'en',
-        target: 'es',
-        text: textContent
+        "source": 'en',
+        "target": 'es',
+        "text": textContent
       };
-      console.log('/v2/translate');
+    
   		console.log(callData);
 	 var restAPICall = {
         type: 'POST',
