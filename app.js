@@ -38,7 +38,7 @@ var language_translation = watson.language_translation({
 
 app.post('/api/translate', function(req, res, next) {
 	console.log("api called");
-	console.log(req);
+	console.log(req.body);
   
   var params = extend({ 'X-WDC-PL-OPT-OUT': req.header('X-WDC-PL-OPT-OUT')}, req.body);
   console.log(' ---> params == ' + JSON.stringify(params)); //L.R.
