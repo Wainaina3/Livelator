@@ -22,6 +22,7 @@ function translator(){
       $.ajax(restAPICall)
       .done( function (data) {
       	$("#outputed").val(data.translations);
+      	$("#outputed").val(data.translations[0].translation);
       })
       .fail( function (err){
       	$("#outputed").val(err);
