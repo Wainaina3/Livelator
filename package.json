@@ -10,6 +10,7 @@
     "cfenv": "1.0.x",
     "express": "4.13.x",
     "extend": "^3.0.0",
+    "morgan": "^1.7.0",
     "watson-developer-cloud": "^2.13.1"
   },
   "repository": {},

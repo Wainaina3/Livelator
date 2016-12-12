@@ -14,10 +14,12 @@ var cfenv = require('cfenv');
 
 //require extend
 var extend = require('extend');
-var bodyParser = require('body-parser');
 
 // create a new express server
 var app = express();
+
+//load configs
+require('./config/expressconf')(app);
 
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
