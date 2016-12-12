@@ -8,6 +8,8 @@ function translator(){
         target: 'es',
         text: textContent
       };
+      console.log('/v2/translate');
+  		console.log(callData);
 	 var restAPICall = {
         type: 'POST',
         url: '/api/translate',
@@ -22,6 +24,7 @@ function translator(){
       	$("#outputed").val(data.translations[0].translation);
       })
       .fail( function (err){
+      	console.log(callData);
       	$("#outputed").val("Error");
       	$("#outputed").val(err.error_message);
       });
