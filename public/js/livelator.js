@@ -1,7 +1,6 @@
 // This script will get input from browser
 
 function translator(){
-	$("#outputed").val("Hello you");
 	var textContent = $("#inputed").val();
 
 	var callData = {
@@ -24,6 +23,7 @@ function translator(){
       	$("#outputed").val(data.translations[0].translation);
       })
       .fail( function (err){
+      	$("#outputed").val("Error");
       	$("#outputed").val(err.error_message);
       });
 }
