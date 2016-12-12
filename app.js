@@ -40,7 +40,7 @@ app.post('/api/translate', function(req, res, next) {
   //console.log('/v2/translate');
   
   var params = extend({ 'X-WDC-PL-OPT-OUT': req.header('X-WDC-PL-OPT-OUT')}, req.body);
-  //console.log(' ---> params == ' + JSON.stringify(params)); //L.R.
+  console.log(' ---> params == ' + JSON.stringify(params)); //L.R.
   
   language_translation.translate(params, function(err, models) {
   if (err)

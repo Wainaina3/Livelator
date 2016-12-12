@@ -8,7 +8,6 @@ function translator(){
         target: 'es',
         text: textContent
       };
-
 	 var restAPICall = {
         type: 'POST',
         url: '/api/translate',
