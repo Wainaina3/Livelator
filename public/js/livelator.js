@@ -24,7 +24,7 @@ function translator(){
       	$("#outputed").val(data.translations[0].translation);
       })
       .fail( function (err){
-      	$("#outputed").val(err);
+      	$("#outputed").val(err.error_message);
       });
 }
 
