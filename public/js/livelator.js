@@ -1,8 +1,7 @@
 // This script will get input from browser
 
 function translator(){
-	alert("button clicked");
-	$("outputed").val("Hello you");
+	$("#outputed").val("Hello you");
 	var textContent = $("#inputed").val();
 
 	var callData = {
