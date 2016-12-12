@@ -12,6 +12,9 @@ var express = require('express');
 // for more info, see: https://www.npmjs.com/package/cfenv
 var cfenv = require('cfenv');
 
+//require extend
+var extend = require('extend');
+
 // create a new express server
 var app = express();
 
@@ -20,6 +23,8 @@ app.use(express.static(__dirname + '/public'));
 
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
+
+
 
 //get the watson cloud 
 var watson = require('watson-developer-cloud');
