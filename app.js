@@ -19,7 +19,7 @@ var extend = require('extend');
 var app = express();
 
 //load configs
-require('./config/expressconf')(app);
+require('./config/express')(app);
 
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
