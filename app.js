@@ -14,6 +14,7 @@ var cfenv = require('cfenv');
 
 //require extend
 var extend = require('extend');
+var bodyParser = require('body-parser');
 
 // create a new express server
 var app = express();
