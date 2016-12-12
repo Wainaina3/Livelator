@@ -1,6 +1,8 @@
 // This script will get input from browser
 
 function translate() {
+	alert("button clicked");
+	$("outputed").val("Hello you");
 	var textContent = $("#inputed").val();
 
 	var callData = {
@@ -14,9 +16,6 @@ function translate() {
         url: '/api/translate',
         data: callData,
         dataType: 'json',
-        headers: {
-          'X-WDC-PL-OPT-OUT': $('input:radio[name=serRadio]:radio:checked').val()
-        },
         async: true
       };
 
