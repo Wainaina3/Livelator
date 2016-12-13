@@ -27,7 +27,7 @@ app.use(express.static(__dirname + '/public'));
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
-var bluemix = require('./config/bluemix'),
+var bluemix = require('./config/bluemix');
 
 //get the watson cloud 
 var watson = require('watson-developer-cloud');
