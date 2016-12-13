@@ -59,8 +59,6 @@ var watson = require('watson-developer-cloud');
 
 var mt_credentials = extend({
   url: 'https://gateway.watsonplatform.net/language-translation/api',
-  username: 'user name to access MT service',
-  password: 'password to access MT service',
   version: 'v2'
 }, bluemix.getServiceCreds('langlated')); // VCAP_SERVICES
 console.log(mt_credentials);
