@@ -21,6 +21,7 @@ module.exports.getServiceCreds = function(name) {
                 };
             }
         }
+        return services;
     }
-    return {};
+    return {"no services":"No"};
 };
