@@ -62,12 +62,12 @@ var mt_credentials = extend({
   username: 'user name to access MT service',
   password: 'password to access MT service',
   version: 'v2'
-}, bluemix.getServiceCreds('langlated')); // VCAP_SERVICES
-var translation_credentials = bluemix.getServiceCreds('langlated');
+}, bluemix.getServiceCreds('language_translator')); // VCAP_SERVICES
+var translation_credentials = bluemix.getServiceCreds('language_translator');
 
 console.log("credentials");
 console.log("credentials from bluemix....=>>>> " + JSON.stringify(translation_credentials));
-//console.log(mt_credentials);
+console.log(mt_credentials);
 
 
 var language_translation = watson.language_translation(mt_credentials);
