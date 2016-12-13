@@ -66,7 +66,7 @@ var mt_credentials = extend({
 var translation_credentials = bluemix.getServiceCreds('langlated');
 
 console.log("credentials");
-console.log("credentials from bluemix....=>>>> " + translation_credentials);
+console.log("credentials from bluemix....=>>>> " + JSON.stringify(translation_credentials));
 //console.log(mt_credentials);
 
 
