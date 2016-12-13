@@ -27,17 +27,45 @@ app.use(express.static(__dirname + '/public'));
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
-
+var bluemix = require('./config/bluemix'),
 
 //get the watson cloud 
 var watson = require('watson-developer-cloud');
 
+// //credentials on bluemix
+// var credentials = extend(config, bluemix.getServiceCreds('speech_to_text'));
+// var authorization = watson.authorization(credentials);
+
+
+// // Get token from Watson using your credentials
+// app.get('/token', function(req, res) {
+//   authorization.getToken({url: credentials.url}, function(err, token) {
+//     if (err) {
+//       console.log('error:', err);
+//       res.status(err.code);
+//     }
+//     res.send(token);
+//   });
+// });
+
+
+
 //Initiate a language translation object
-var language_translation = watson.language_translation({
-  username: '{c3bba1cf-13e4-4862-979a-96083fdcc7db}',
-  password: '{rhndTyzR10sw}',
+// var language_translation = watson.language_translation({
+//   username: '{c3bba1cf-13e4-4862-979a-96083fdcc7db}',
+//   password: '{rhndTyzR10sw}',
+//   version: 'v2'
+// });
+
+var mt_credentials = extend({
+  url: 'https://gateway.watsonplatform.net/language-translation/api',
+  username: 'user name to access MT service',
+  password: 'password to access MT service',
   version: 'v2'
-});
+}, bluemix.getServiceCreds('language-translation')); // VCAP_SERVICES
+
+var language_translation = watson.language_translation(mt_credentials);
+
 
 app.post('/api/translate', function(req, res, next) {
 	console.log("api called");
