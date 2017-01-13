@@ -32,6 +32,28 @@ var bluemix = require('./config/bluemix');
 //get the watson cloud 
 var watson = require('watson-developer-cloud');
 
+
+//passport aunthetication
+var passport = require('passport');
+var MCABackendStrategy = require('bms-mca-token-validation-strategy').MCABackendStrategy;
+
+passport.use(new MCABackendStrategy());
+
+app.use(passport.initialize());
+
+app.get('/protected', passport.authenticate('mca-backend-strategy', {session: false }),
+    function(request, response){
+        console.log("Securty context", request.securityContext)    
+        response.send(200, "Success! got the request");
+    }
+);
+
+app.get('/audio',function(request,response){
+  console.log("request from android");
+  response.send(200,"Success! got the audio request");
+})
+
+
 // //credentials on bluemix
 // var credentials = extend(config, bluemix.getServiceCreds('speech_to_text'));
 // var authorization = watson.authorization(credentials);
