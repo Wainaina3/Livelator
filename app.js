@@ -32,6 +32,28 @@ var bluemix = require('./config/bluemix');
 //get the watson cloud 
 var watson = require('watson-developer-cloud');
 
+//Datagram server
+const dgram = require('dgram');
+const server = dgram.createSocket('udp4');
+
+server.on('error', (err) =>{
+  console.log('server error:\n&{err.stack}');
+  server.close();
+});
+
+server.on('message',(msg,rinfo)=>{
+
+  console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
+  console.log('datagram received from android. Wow');
+});
+
+server.on('listening',() => {
+  var address = server.address();
+  console.log(`server listening ${address.address}:${address.port}`);
+});
+
+server.bind(65656);
+
 
 //passport aunthetication
 var passport = require('passport');

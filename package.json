@@ -9,6 +9,7 @@
     "bms-mca-token-validation-strategy": "^2.0.9",
     "body-parser": "^1.15.2",
     "cfenv": "1.0.x",
+    "dgram": "^1.0.1",
     "dotenv": "^2.0.0",
     "express": "4.13.x",
     "extend": "^3.0.0",
