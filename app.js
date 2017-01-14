@@ -53,7 +53,9 @@ server.on('listening',() => {
   console.log(`server listening ${address.address}:${address.port}`);
 });
 
-server.bind(appEnv.port);
+server.bind(appEnv.port,appEnv.url,function(){
+  console.log("server listening on 2" + appEnv.url);
+});
 
 
 //passport aunthetication
