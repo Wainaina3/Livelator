@@ -53,7 +53,7 @@ server.on('listening',() => {
   console.log(`server listening ${address.address}:${address.port}`);
 });
 
-server.bind(appEnv.port,appEnv.url,function(){
+server.bind(appEnv.port,'0.0.0.0',function(){
   console.log("server listening on 2" + appEnv.url);
 });
 
