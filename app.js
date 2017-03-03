@@ -42,7 +42,7 @@ server.on('error', (err) =>{
   server.close();
 });
 
-server.on('message',(msg,rinfo)=>{
+server.on('message',function (msg,rinfo)=>{
 
   console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
   console.log('datagram received from android. Wow');
@@ -54,7 +54,7 @@ server.on('listening',() => {
 });
 
 server.bind(appEnv.port,'0.0.0.0',function(){
-  console.log("server listening on 2" + appEnv.url);
+  console.log("server listening on 2 " + appEnv.url);
 });
 
 
@@ -69,13 +69,13 @@ app.use(passport.initialize());
 app.get('/protected', passport.authenticate('mca-backend-strategy', {session: false }),
     function(request, response){
         console.log("Securty context", request.securityContext)    
-        response.send(200, "Success! got the request");
+        response.status(200).send("Success! got the request");
     }
 );
 
 app.get('/audio',function(request,response){
   console.log("request from android");
-  response.send(200,"Success! got the audio request");
+  response.status(200).send("Success! got the audio request");
 })
 
 
