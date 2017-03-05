@@ -89,7 +89,7 @@ var stt_credentials = extend({
   url: 'https://stream.watsonplatform.net/speech-to-text/api',
   username: 'user name to access STT service',
   password: 'password to access STT service',
-  version: 'v2'
+  version: 'v1'
 }, bluemix.getServiceCreds('speech_to_text')); // VCAP_SERVICES
 
 //show credentials
