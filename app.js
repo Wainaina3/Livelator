@@ -75,35 +75,10 @@ app.get('/protected', passport.authenticate('mca-backend-strategy', {session: fa
 
 app.get('/audio',function(request,response){
   console.log("request from android");
-  response.status(200).send("Success! got the audio request");
+  response.status(200).send("Success! request");
 })
 
-
-// //credentials on bluemix
-// var credentials = extend(config, bluemix.getServiceCreds('speech_to_text'));
-// var authorization = watson.authorization(credentials);
-
-
-// // Get token from Watson using your credentials
-// app.get('/token', function(req, res) {
-//   authorization.getToken({url: credentials.url}, function(err, token) {
-//     if (err) {
-//       console.log('error:', err);
-//       res.status(err.code);
-//     }
-//     res.send(token);
-//   });
-// });
-
-
-
-//Initiate a language translation object
-// var language_translation = watson.language_translation({
-//   username: '{c3bba1cf-13e4-4862-979a-96083fdcc7db}',
-//   password: '{rhndTyzR10sw}',
-//   version: 'v2'
-// });
-
+//translation
 var mt_credentials = extend({
   url: 'https://gateway.watsonplatform.net/language-translation/api',
   username: 'user name to access MT service',
@@ -132,6 +107,56 @@ app.post('/api/translate', function(req, res, next) {
     res.json(models);
   });
 });
+
+//speech transcription
+
+var stt_credentials = extend({
+  url: 'https://stream.watsonplatform.net/speech-to-text/api',
+  username: 'user name to access STT service',
+  password: 'password to access STT service',
+  version: 'v2'
+}, bluemix.getServiceCreds('speech_to_text')); // VCAP_SERVICES
+
+//show credentials
+var sttcredentials = bluemix.getServiceCreds('speech_to_text');
+
+//initialize stt service
+var speech_texted = watson.speech_to_text(stt_credentials);
+
+
+var files = ['audio-file1.flac', 'audio-file2.flac'];
+for (var file in files) {
+  var params = {
+    audio: fs.createReadStream(files[file]),
+    content_type: 'audio/flac',
+    timestamps: true,
+    word_alternatives_threshold: 0.9,
+    keywords: ['hello', 'trial', 'david'],
+    keywords_threshold: 0.5,
+    continuous: true
+  };
+
+  speech_to_text.recognize(params, function(error, transcript) {
+    if (error)
+      console.log('Error:', error);
+    else
+      console.log(JSON.stringify(transcript, null, 2));
+  });
+}
+
+// Get token from Watson using your credentials
+app.get('/token', function(req, res) {
+  authorization.getToken({url: credentials.url}, function(err, token) {
+    if (err) {
+      console.log('error:', err);
+      res.status(err.code);
+    }
+    res.send(token);
+  });
+});
+
+
+
 
 
 
