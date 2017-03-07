@@ -91,6 +91,7 @@ var stt_credentials = extend({
   password: 'password to access STT service',
   version: 'v1'
 }, bluemix.getServiceCreds('speech_to_text')); // VCAP_SERVICES
+var fs = require('fs');
 
 //show credentials
 var sttcredentials = bluemix.getServiceCreds('speech_to_text');
@@ -98,26 +99,41 @@ var sttcredentials = bluemix.getServiceCreds('speech_to_text');
 //initialize stt service
 var speech_texted = watson.speech_to_text(stt_credentials);
 
+var params = {
+  model: 'en-US_BroadbandModel',
+  content_type: 'audio/flac',
+  continuous: true,
+  'interim_results': true,
+  'max_alternatives': 3,
+  'word_confidence': false,
+  timestamps: false,
+  keywords: ['trials', 'good', 'hello'],
+  'keywords_threshold': 0.5
+};
 
-var files = ['audio-file1.flac', 'audio-file2.flac'];
-for (var file in files) {
-  var params = {
-    audio: fs.createReadStream(files[file]),
-    content_type: 'audio/flac',
-    timestamps: true,
-    word_alternatives_threshold: 0.9,
-    keywords: ['hello', 'trial', 'david'],
-    keywords_threshold: 0.5,
-    continuous: true
-  };
+// Create the stream.
+var recognizeStream = speech_texted.createRecognizeStream(params);
 
-  speech_to_text.recognize(params, function(error, transcript) {
-    if (error)
-      console.log('Error:', error);
-    else
-      console.log(JSON.stringify(transcript, null, 2));
-  });
-}
+// Pipe in the audio.
+fs.createReadStream('audio-file.flac').pipe(recognizeStream);
+
+// Pipe out the transcription to a file.
+recognizeStream.pipe(fs.createWriteStream('transcription.txt'));
+
+// Get strings instead of buffers from 'data' events.
+recognizeStream.setEncoding('utf8');
+
+// Listen for events.
+recognizeStream.on('results', function(event) { onEvent('Results:', event); });
+recognizeStream.on('data', function(event) { onEvent('Data:', event); });
+recognizeStream.on('error', function(event) { onEvent('Error:', event); });
+recognizeStream.on('close', function(event) { onEvent('Close:', event); });
+recognizeStream.on('speaker_labels', function(event) { onEvent('Speaker_Labels:', event); });
+
+// Displays events on the console.
+function onEvent(name, event) {
+  console.log(name, JSON.stringify(event, null, 2));
+};
 
 // Get token from Watson using your credentials
 app.get('/token', function(req, res) {
