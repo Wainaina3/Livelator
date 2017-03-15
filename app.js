@@ -115,7 +115,7 @@ var params = {
 var recognizeStream = speech_texted.createRecognizeStream(params);
 
 // Pipe in the audio.
-fs.createReadStream('audio-file.flac').pipe(recognizeStream);
+//fs.createReadStream('audio-file.flac').pipe(recognizeStream);
 
 // Pipe out the transcription to a file.
 recognizeStream.pipe(fs.createWriteStream('transcription.txt'));
